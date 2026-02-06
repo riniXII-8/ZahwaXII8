@@ -1,0 +1,1881 @@
+<!doctype html>
+<html lang="id" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zahwa Syifa - Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    
+    :root {
+      --color-bg: #FDFBF7;
+      --color-surface: #FFFFFF;
+      --color-text: #1A1A1A;
+      --color-primary: #8B7355;
+      --color-secondary: #C4A77D;
+    }
+    
+    * {
+      scroll-behavior: smooth;
+    }
+    
+    .font-display {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+    }
+    
+    .font-body {
+      font-family: 'Inter', system-ui, sans-serif;
+    }
+    
+    .text-gradient {
+      background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .animate-fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 0.8s ease forwards;
+    }
+    
+    .animate-fade-up-delay-1 { animation-delay: 0.1s; }
+    .animate-fade-up-delay-2 { animation-delay: 0.2s; }
+    .animate-fade-up-delay-3 { animation-delay: 0.3s; }
+    .animate-fade-up-delay-4 { animation-delay: 0.4s; }
+    
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+    }
+    
+    @keyframes pulse-soft {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 0.7; }
+    }
+    
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    .animate-pulse-soft {
+      animation: pulse-soft 4s ease-in-out infinite;
+    }
+    
+    .shape-blob {
+      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
+    
+    .nav-link {
+      position: relative;
+      transition: color 0.3s ease;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--color-primary);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+    
+    .card-hover {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 50px -12px rgba(139, 115, 85, 0.15);
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s ease;
+    }
+    
+    .btn-primary:hover::before {
+      left: 100%;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px -10px rgba(139, 115, 85, 0.5);
+    }
+    
+    .btn-secondary {
+      border: 2px solid var(--color-primary);
+      transition: all 0.3s ease;
+    }
+    
+    .btn-secondary:hover {
+      background: var(--color-primary);
+      color: white;
+      transform: translateY(-2px);
+    }
+    
+    .progress-bar {
+      background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+      transition: width 1.5s ease;
+    }
+    
+    .timeline-line {
+      background: linear-gradient(180deg, var(--color-primary), var(--color-secondary));
+    }
+    
+    .section-title {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+      border-radius: 2px;
+    }
+    
+    .bg-pattern {
+      background-image: radial-gradient(circle at 2px 2px, rgba(139, 115, 85, 0.1) 1px, transparent 0);
+      background-size: 40px 40px;
+    }
+    
+    .scroll-indicator {
+      animation: bounce 2s infinite;
+    }
+    
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-10px); }
+      60% { transform: translateY(-5px); }
+    }
+    
+    .mobile-menu {
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+    }
+    
+    .mobile-menu.active {
+      transform: translateX(0);
+    }
+    
+    .hamburger-line {
+      transition: all 0.3s ease;
+    }
+    
+    .hamburger.active .hamburger-line:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    .hamburger.active .hamburger-line:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .hamburger.active .hamburger-line:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -6px);
+    }
+
+    .intersection-animate {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .intersection-animate.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full font-body" style="background-color: var(--color-bg); color: var(--color-text);">
+  <div id="app-wrapper" class="w-full h-full overflow-auto"><!-- Header -->
+   <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" style="background: rgba(253, 251, 247, 0.95); backdrop-filter: blur(10px);">
+    <nav class="max-w-7xl mx-auto px-6 lg:px-8">
+     <div class="flex items-center justify-between h-20"><!-- Logo --> <a href="#home" class="font-display text-2xl font-bold" style="color: var(--color-primary);"> Zahwa<span style="color: var(--color-secondary);">.</span> </a> <!-- Desktop Navigation -->
+      <div class="hidden lg:flex items-center gap-8"><a href="#home" class="nav-link text-sm font-medium tracking-wide active">Home</a> <a href="#about" class="nav-link text-sm font-medium tracking-wide">About</a> <a href="#skills" class="nav-link text-sm font-medium tracking-wide">Skills</a> <a href="#education" class="nav-link text-sm font-medium tracking-wide">Education</a> <a href="#achievement" class="nav-link text-sm font-medium tracking-wide">Achievement</a> <a href="#organization" class="nav-link text-sm font-medium tracking-wide">Organization</a> <a href="#portfolio" class="nav-link text-sm font-medium tracking-wide">Portfolio</a> <a href="#experience" class="nav-link text-sm font-medium tracking-wide">Experience</a> <a href="#contact" class="nav-link text-sm font-medium tracking-wide">Contact</a>
+      </div><!-- Mobile Menu Button --> <button id="hamburger" class="hamburger lg:hidden flex flex-col gap-1.5 p-2"> <span class="hamburger-line w-6 h-0.5 rounded" style="background: var(--color-text);"></span> <span class="hamburger-line w-6 h-0.5 rounded" style="background: var(--color-text);"></span> <span class="hamburger-line w-6 h-0.5 rounded" style="background: var(--color-text);"></span> </button>
+     </div>
+    </nav><!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu fixed top-20 right-0 bottom-0 w-72 lg:hidden" style="background: var(--color-surface); box-shadow: -10px 0 30px rgba(0,0,0,0.1);">
+     <div class="flex flex-col p-8 gap-6"><a href="#home" class="mobile-nav-link text-lg font-medium" onclick="closeMobileMenu()">Home</a> <a href="#about" class="mobile-nav-link text-lg font-medium" onclick="closeMobileMenu()">About</a> <a href="#skills" class="mobile-nav-link text-lg font-medium" onclick="closeMobileMenu()">Skills</a> <a href="#education" class="mobile-nav-link text-lg font-medium" onclick="closeMobileMenu()">Education</a> <a href="#achievement" class="mobile-nav-link text-lg font-medium" onclick="closeMobileMenu()">Achievement</a> <a href="#organization" class="mobile-nav-link text-lg font-medium" onclick="closeMobileMenu()">Organization</a> <a href="#portfolio" class="mobile-nav-link text-lg font-medium" onclick="closeMobileMenu()">Portfolio</a> <a href="#experience" class="mobile-nav-link text-lg font-medium" onclick="closeMobileMenu()">Experience</a> <a href="#contact" class="mobile-nav-link text-lg font-medium" onclick="closeMobileMenu()">Contact</a>
+     </div>
+    </div>
+   </header><!-- Hero Section -->
+   <section id="home" class="min-h-screen pt-20 relative overflow-hidden bg-pattern"><!-- Background Elements -->
+    <div class="absolute top-20 right-10 w-72 h-72 shape-blob animate-float animate-pulse-soft" style="background: linear-gradient(135deg, rgba(139, 115, 85, 0.1), rgba(196, 167, 125, 0.1));"></div>
+    <div class="absolute bottom-20 left-10 w-48 h-48 shape-blob animate-float" style="background: linear-gradient(135deg, rgba(196, 167, 125, 0.15), rgba(139, 115, 85, 0.1)); animation-delay: 2s;"></div>
+    <div class="absolute top-1/2 left-1/4 w-24 h-24 rounded-full animate-pulse-soft" style="background: rgba(139, 115, 85, 0.05);"></div><!-- Large Background Text -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-display text-[15vw] font-bold opacity-[0.03] pointer-events-none select-none whitespace-nowrap">
+     PORTFOLIO
+    </div>
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-12 lg:py-20">
+     <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center min-h-[calc(100vh-120px)]"><!-- Left Content -->
+      <div class="order-2 lg:order-1 text-center lg:text-left">
+       <p class="animate-fade-up text-sm font-medium tracking-[0.3em] uppercase mb-4" style="color: var(--color-primary);">Welcome to my portfolio</p>
+       <h1 id="hero-title" class="animate-fade-up animate-fade-up-delay-1 font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-6">I'm <span class="text-gradient">Zahwa Syifa</span></h1>
+       <p id="hero-subtitle" class="animate-fade-up animate-fade-up-delay-2 text-xl lg:text-2xl font-light mb-4" style="color: var(--color-primary);">12th Grade of Senior High School</p>
+       <p class="animate-fade-up animate-fade-up-delay-3 text-base lg:text-lg leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0" style="color: #666;">Pelajar dengan minat besar pada Bahasa dan Sastra Indonesia, khususnya puisi, novel, dan drama. Bermimpi menjadi penulis yang dapat menginspirasi banyak orang.</p>
+       <div class="animate-fade-up animate-fade-up-delay-4 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"><a href="#about" class="btn-primary px-8 py-4 rounded-full text-white font-medium text-sm tracking-wide"> Lihat Portofolio </a> <a href="#contact" class="btn-secondary px-8 py-4 rounded-full font-medium text-sm tracking-wide" style="color: var(--color-primary);"> Hubungi Saya </a>
+       </div>
+      </div><!-- Right Content - Profile -->
+      <div class="order-1 lg:order-2 flex justify-center lg:justify-end">
+       <div class="relative animate-fade-up"><!-- Decorative Frame -->
+        <div class="absolute -inset-4 rounded-3xl rotate-6" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary)); opacity: 0.2;"></div>
+        <div class="absolute -inset-4 rounded-3xl -rotate-3" style="border: 2px solid var(--color-primary); opacity: 0.3;"></div><!-- Profile Image Container -->
+        <div class="relative w-64 h-80 sm:w-72 sm:h-96 lg:w-80 lg:h-[420px] rounded-3xl overflow-hidden" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));"><img src="https://i.ibb.co.com/HDKDzcGc/zahwa.jpg" alt="Zahwa Syifa" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Profile image failed to load:', this.src); this.style.display='none';"> <!-- Overlay Pattern -->
+         <div class="absolute inset-0 bg-pattern opacity-20"></div>
+        </div><!-- Floating Elements -->
+        <div class="absolute -top-6 -right-6 w-16 h-16 rounded-2xl flex items-center justify-center animate-float" style="background: var(--color-surface); box-shadow: 0 10px 40px rgba(139, 115, 85, 0.2);"><span class="text-2xl">✍️</span>
+        </div>
+        <div class="absolute -bottom-4 -left-4 w-14 h-14 rounded-xl flex items-center justify-center animate-float" style="background: var(--color-surface); box-shadow: 0 10px 40px rgba(139, 115, 85, 0.2); animation-delay: 1s;"><span class="text-xl">📚</span>
+        </div>
+       </div>
+      </div>
+     </div><!-- Scroll Indicator -->
+     <div class="hidden lg:flex justify-center mt-8"><a href="#about" class="scroll-indicator flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-opacity"> <span class="text-xs tracking-widest uppercase">Scroll</span>
+       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+       </svg></a>
+     </div>
+    </div>
+   </section><!-- About Section -->
+   <section id="about" class="py-20 lg:py-32 relative" style="background: var(--color-surface);">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+     <div class="grid lg:grid-cols-2 gap-16 items-start"><!-- Left - Title & Image -->
+      <div class="intersection-animate">
+       <p class="text-sm font-medium tracking-[0.3em] uppercase mb-4" style="color: var(--color-primary);">Get to know me</p>
+       <h2 id="about-title" class="section-title font-display text-4xl lg:text-5xl font-bold mb-12">About Me</h2><!-- Stats Cards -->
+       <div class="grid grid-cols-2 gap-4 mt-16">
+        <div class="p-6 rounded-2xl card-hover" style="background: var(--color-bg);"><span class="text-3xl font-display font-bold text-gradient">4</span>
+         <p class="text-sm mt-2" style="color: #666;">Tahun Pengalaman Sastra</p>
+        </div>
+        <div class="p-6 rounded-2xl card-hover" style="background: var(--color-bg);"><span class="text-3xl font-display font-bold text-gradient">5</span>
+         <p class="text-sm mt-2" style="color: #666;">Lomba Bahasa Sastra</p>
+        </div>
+        <div class="p-6 rounded-2xl card-hover" style="background: var(--color-bg);"><span class="text-3xl font-display font-bold text-gradient">11</span>
+         <p class="text-sm mt-2" style="color: #666;">Kepanitiaan</p>
+        </div>
+        <div class="p-6 rounded-2xl card-hover" style="background: var(--color-bg);"><span class="text-3xl font-display font-bold text-gradient">1</span>
+         <p class="text-sm mt-2" style="color: #666;">Organisasi Aktif</p>
+        </div>
+       </div>
+      </div><!-- Right - Content -->
+      <div class="intersection-animate space-y-8" style="animation-delay: 0.2s;"><!-- Background -->
+       <div>
+        <h3 class="font-display text-xl font-semibold mb-3 flex items-center gap-3"><span class="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));">01</span> Latar Belakang</h3>
+        <p class="text-base leading-relaxed pl-14" style="color: #555;">Zahwa Syifa adalah anak pertama dari dua bersaudara dengan status sebagai pelajar. Ia memiliki minat besar pada dunia sastra, khususnya puisi, drama dan novel yang menjadi sarana pengembangan kreativitas dan ekspresi.</p>
+       </div><!-- Minat & Tujuan -->
+       <div>
+        <h3 class="font-display text-xl font-semibold mb-3 flex items-center gap-3"><span class="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));">02</span> Minat &amp; Tujuan</h3>
+        <div class="pl-14">
+         <p class="text-sm font-medium mb-2" style="color: var(--color-primary);">Minat:</p>
+         <p class="text-base mb-4" style="color: #555;">Bahasa dan Sastra Indonesia, berpuisi, membaca novel, menulis puisi</p>
+         <p class="text-sm font-medium mb-2" style="color: var(--color-primary);">Tujuan:</p>
+         <ul class="space-y-2">
+          <li class="flex items-center gap-2 text-base" style="color: #555;">
+           <svg class="w-4 h-4 flex-shrink-0" style="color: var(--color-secondary);" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+           </svg> Menjadi penulis novel</li>
+          <li class="flex items-center gap-2 text-base" style="color: #555;">
+           <svg class="w-4 h-4 flex-shrink-0" style="color: var(--color-secondary);" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+           </svg> Membangun sebuah toko buku</li>
+          <li class="flex items-center gap-2 text-base" style="color: #555;">
+           <svg class="w-4 h-4 flex-shrink-0" style="color: var(--color-secondary);" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+           </svg> Menjadi penulis naskah drama</li>
+          <li class="flex items-center gap-2 text-base" style="color: #555;">
+           <svg class="w-4 h-4 flex-shrink-0" style="color: var(--color-secondary);" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+           </svg> Melestarikan budaya Bahasa Indonesia</li>
+         </ul>
+        </div>
+       </div><!-- Hobi -->
+       <div>
+        <h3 class="font-display text-xl font-semibold mb-3 flex items-center gap-3"><span class="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));">03</span> Hobi</h3>
+        <div class="pl-14 flex flex-wrap gap-3"><span class="px-4 py-2 rounded-full text-sm font-medium" style="background: var(--color-bg); color: var(--color-primary);">📖 Membaca Novel</span> <span class="px-4 py-2 rounded-full text-sm font-medium" style="background: var(--color-bg); color: var(--color-primary);">🎙️ Menonton Podcast</span> <span class="px-4 py-2 rounded-full text-sm font-medium" style="background: var(--color-bg); color: var(--color-primary);">🎵 Mendengarkan Musik</span>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Skills Section -->
+   <section id="skills" class="py-20 lg:py-32 bg-pattern">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+     <div class="text-center mb-16 intersection-animate">
+      <p class="text-sm font-medium tracking-[0.3em] uppercase mb-4" style="color: var(--color-primary);">What I'm Good At</p>
+      <h2 class="section-title font-display text-4xl lg:text-5xl font-bold mx-auto">My Skills</h2>
+     </div>
+     <div class="grid lg:grid-cols-2 gap-16"><!-- Left Column - Hard Skills -->
+      <div class="space-y-8">
+       <div class="intersection-animate">
+        <h3 class="font-display text-2xl font-semibold mb-8 flex items-center gap-3"><span class="w-8 h-8 rounded-lg flex items-center justify-center text-white text-sm" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));">💻</span> Hard Skills</h3>
+       </div><!-- Hard Skill 1 -->
+       <div class="intersection-animate" style="animation-delay: 0.1s;">
+        <div class="flex justify-between items-center mb-3"><span class="font-medium">Penguasaan Microsoft Office</span> <span class="text-sm font-medium" style="color: var(--color-primary);">90%</span>
+        </div>
+        <div class="h-3 rounded-full overflow-hidden" style="background: rgba(139, 115, 85, 0.1);">
+         <div class="progress-bar h-full rounded-full" style="width: 90%;"></div>
+        </div>
+       </div><!-- Hard Skill 2 -->
+       <div class="intersection-animate" style="animation-delay: 0.2s;">
+        <div class="flex justify-between items-center mb-3"><span class="font-medium">Copywriting</span> <span class="text-sm font-medium" style="color: var(--color-primary);">88%</span>
+        </div>
+        <div class="h-3 rounded-full overflow-hidden" style="background: rgba(139, 115, 85, 0.1);">
+         <div class="progress-bar h-full rounded-full" style="width: 88%;"></div>
+        </div>
+       </div>
+      </div><!-- Right Column - Creative & Soft Skills -->
+      <div class="space-y-8"><!-- Creative Skills Section -->
+       <div class="space-y-8">
+        <div class="intersection-animate" style="animation-delay: 0.1s;">
+         <h3 class="font-display text-2xl font-semibold mb-8 flex items-center gap-3"><span class="w-8 h-8 rounded-lg flex items-center justify-center text-white text-sm" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));">✨</span> Creative Skills</h3>
+        </div><!-- Creative Skill 1 -->
+        <div class="intersection-animate" style="animation-delay: 0.2s;">
+         <div class="flex justify-between items-center mb-3"><span class="font-medium">Menulis Puisi</span> <span class="text-sm font-medium" style="color: var(--color-primary);">95%</span>
+         </div>
+         <div class="h-3 rounded-full overflow-hidden" style="background: rgba(139, 115, 85, 0.1);">
+          <div class="progress-bar h-full rounded-full" style="width: 95%;"></div>
+         </div>
+        </div><!-- Creative Skill 2 -->
+        <div class="intersection-animate" style="animation-delay: 0.3s;">
+         <div class="flex justify-between items-center mb-3"><span class="font-medium">Menulis Cerpen</span> <span class="text-sm font-medium" style="color: var(--color-primary);">88%</span>
+         </div>
+         <div class="h-3 rounded-full overflow-hidden" style="background: rgba(139, 115, 85, 0.1);">
+          <div class="progress-bar h-full rounded-full" style="width: 88%;"></div>
+         </div>
+        </div><!-- Creative Skill 3 -->
+        <div class="intersection-animate" style="animation-delay: 0.4s;">
+         <div class="flex justify-between items-center mb-3"><span class="font-medium">Analisis Sastra</span> <span class="text-sm font-medium" style="color: var(--color-primary);">85%</span>
+         </div>
+         <div class="h-3 rounded-full overflow-hidden" style="background: rgba(139, 115, 85, 0.1);">
+          <div class="progress-bar h-full rounded-full" style="width: 85%;"></div>
+         </div>
+        </div>
+       </div><!-- Soft Skills Section -->
+       <div class="space-y-8 mt-12 pt-8 border-t" style="border-color: rgba(139, 115, 85, 0.1);">
+        <div class="intersection-animate" style="animation-delay: 0.1s;">
+         <h3 class="font-display text-2xl font-semibold mb-8 flex items-center gap-3"><span class="w-8 h-8 rounded-lg flex items-center justify-center text-white text-sm" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));">🤝</span> Soft Skills</h3>
+        </div><!-- Soft Skill 1 -->
+        <div class="intersection-animate" style="animation-delay: 0.2s;">
+         <div class="flex justify-between items-center mb-3"><span class="font-medium">Communication</span> <span class="text-sm font-medium" style="color: var(--color-primary);">92%</span>
+         </div>
+         <div class="h-3 rounded-full overflow-hidden" style="background: rgba(139, 115, 85, 0.1);">
+          <div class="progress-bar h-full rounded-full" style="width: 92%;"></div>
+         </div>
+        </div><!-- Soft Skill 2 -->
+        <div class="intersection-animate" style="animation-delay: 0.3s;">
+         <div class="flex justify-between items-center mb-3"><span class="font-medium">Problem Solving</span> <span class="text-sm font-medium" style="color: var(--color-primary);">87%</span>
+         </div>
+         <div class="h-3 rounded-full overflow-hidden" style="background: rgba(139, 115, 85, 0.1);">
+          <div class="progress-bar h-full rounded-full" style="width: 87%;"></div>
+         </div>
+        </div><!-- Soft Skill 3 -->
+        <div class="intersection-animate" style="animation-delay: 0.4s;">
+         <div class="flex justify-between items-center mb-3"><span class="font-medium">Kreativitas Bahasa</span> <span class="text-sm font-medium" style="color: var(--color-primary);">90%</span>
+         </div>
+         <div class="h-3 rounded-full overflow-hidden" style="background: rgba(139, 115, 85, 0.1);">
+          <div class="progress-bar h-full rounded-full" style="width: 90%;"></div>
+         </div>
+        </div><!-- Soft Skill 4 -->
+        <div class="intersection-animate" style="animation-delay: 0.5s;">
+         <div class="flex justify-between items-center mb-3"><span class="font-medium">Public Speaking</span> <span class="text-sm font-medium" style="color: var(--color-primary);">82%</span>
+         </div>
+         <div class="h-3 rounded-full overflow-hidden" style="background: rgba(139, 115, 85, 0.1);">
+          <div class="progress-bar h-full rounded-full" style="width: 82%;"></div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Education Section -->
+   <section id="education" class="py-20 lg:py-32" style="background: var(--color-surface);">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+     <div class="text-center mb-16 intersection-animate">
+      <p class="text-sm font-medium tracking-[0.3em] uppercase mb-4" style="color: var(--color-primary);">My Journey</p>
+      <h2 class="section-title font-display text-4xl lg:text-5xl font-bold mx-auto">Education</h2>
+     </div>
+     <div class="max-w-3xl mx-auto relative"><!-- Timeline Line -->
+      <div class="absolute left-8 top-0 bottom-0 w-0.5 timeline-line hidden sm:block"></div><!-- Timeline Items -->
+      <div class="space-y-8"><!-- Item 1 -->
+       <div class="intersection-animate relative flex gap-6 sm:gap-8">
+        <div class="hidden sm:flex w-16 h-16 rounded-full flex-shrink-0 items-center justify-center text-white font-display font-bold text-lg z-10" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));">
+         🎓
+        </div>
+        <div class="flex-1 p-6 rounded-2xl card-hover" style="background: var(--color-bg);"><span class="text-xs font-medium tracking-wider uppercase px-3 py-1 rounded-full inline-block mb-3" style="background: rgba(139, 115, 85, 0.1); color: var(--color-primary);"> 2023 - Sekarang </span>
+         <h3 class="font-display text-xl font-semibold mb-2">SMAN 1 Subang</h3>
+         <p class="text-sm" style="color: #666;">Senior High School</p>
+        </div>
+       </div><!-- Item 2 -->
+       <div class="intersection-animate relative flex gap-6 sm:gap-8" style="animation-delay: 0.1s;">
+        <div class="hidden sm:flex w-16 h-16 rounded-full flex-shrink-0 items-center justify-center text-white font-display font-bold text-lg z-10" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));">
+         📚
+        </div>
+        <div class="flex-1 p-6 rounded-2xl card-hover" style="background: var(--color-bg);"><span class="text-xs font-medium tracking-wider uppercase px-3 py-1 rounded-full inline-block mb-3" style="background: rgba(139, 115, 85, 0.1); color: var(--color-primary);"> 2020 - 2023 </span>
+         <h3 class="font-display text-xl font-semibold mb-2">SMPN 1 Cijambe</h3>
+         <p class="text-sm" style="color: #666;">Junior High School</p>
+        </div>
+       </div><!-- Item 3 -->
+       <div class="intersection-animate relative flex gap-6 sm:gap-8" style="animation-delay: 0.2s;">
+        <div class="hidden sm:flex w-16 h-16 rounded-full flex-shrink-0 items-center justify-center text-white font-display font-bold text-lg z-10" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));">
+         ✏️
+        </div>
+        <div class="flex-1 p-6 rounded-2xl card-hover" style="background: var(--color-bg);"><span class="text-xs font-medium tracking-wider uppercase px-3 py-1 rounded-full inline-block mb-3" style="background: rgba(139, 115, 85, 0.1); color: var(--color-primary);"> 2017 - 2020 </span>
+         <h3 class="font-display text-xl font-semibold mb-2">SDN Tanjung Wangi</h3>
+         <p class="text-sm" style="color: #666;">Elementary School</p>
+        </div>
+       </div><!-- Item 4 -->
+       <div class="intersection-animate relative flex gap-6 sm:gap-8" style="animation-delay: 0.3s;">
+        <div class="hidden sm:flex w-16 h-16 rounded-full flex-shrink-0 items-center justify-center text-white font-display font-bold text-lg z-10" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));">
+         🌸
+        </div>
+        <div class="flex-1 p-6 rounded-2xl card-hover" style="background: var(--color-bg);"><span class="text-xs font-medium tracking-wider uppercase px-3 py-1 rounded-full inline-block mb-3" style="background: rgba(139, 115, 85, 0.1); color: var(--color-primary);"> 2015 </span>
+         <h3 class="font-display text-xl font-semibold mb-2">TK Az-Zahra</h3>
+         <p class="text-sm" style="color: #666;">Kindergarten</p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Achievement Section -->
+   <section id="achievement" class="py-20 lg:py-32 bg-pattern">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+     <div class="text-center mb-16 intersection-animate">
+      <p class="text-sm font-medium tracking-[0.3em] uppercase mb-4" style="color: var(--color-primary);">My Accomplishments</p>
+      <h2 class="section-title font-display text-4xl lg:text-5xl font-bold mx-auto">Achievement</h2>
+     </div>
+     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"><!-- Achievement 1 -->
+      <div class="intersection-animate p-6 rounded-2xl card-hover" style="background: var(--color-surface);">
+       <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background: linear-gradient(135deg, rgba(139, 115, 85, 0.1), rgba(196, 167, 125, 0.1));"><span class="text-2xl">🥈</span>
+       </div>
+       <h3 class="font-display text-lg font-semibold mb-2">Juara 2 Lomba Pidato FLS2N</h3>
+       <p class="text-sm mb-3" style="color: #666;">Tingkat SD</p><span class="text-xs px-3 py-1 rounded-full" style="background: rgba(139, 115, 85, 0.1); color: var(--color-primary);">Non-Akademik</span>
+      </div><!-- Achievement 2 -->
+      <div class="intersection-animate p-6 rounded-2xl card-hover" style="background: var(--color-surface); animation-delay: 0.1s;">
+       <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background: linear-gradient(135deg, rgba(139, 115, 85, 0.1), rgba(196, 167, 125, 0.1));"><span class="text-2xl">🥇</span>
+       </div>
+       <h3 class="font-display text-lg font-semibold mb-2">Juara 1 MGMP Bahasa Indonesia</h3>
+       <p class="text-sm mb-3" style="color: #666;">Baca Puisi Tingkat SMP</p><span class="text-xs px-3 py-1 rounded-full" style="background: rgba(139, 115, 85, 0.1); color: var(--color-primary);">Akademik</span>
+      </div><!-- Achievement 3 -->
+      <div class="intersection-animate p-6 rounded-2xl card-hover" style="background: var(--color-surface); animation-delay: 0.2s;">
+       <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background: linear-gradient(135deg, rgba(139, 115, 85, 0.1), rgba(196, 167, 125, 0.1));"><span class="text-2xl">🏆</span>
+       </div>
+       <h3 class="font-display text-lg font-semibold mb-2">Juara 1 FLS2N Baca Puisi</h3>
+       <p class="text-sm mb-3" style="color: #666;">Tingkat SMA Se-Kabupaten</p><span class="text-xs px-3 py-1 rounded-full" style="background: rgba(139, 115, 85, 0.1); color: var(--color-primary);">Non-Akademik</span>
+      </div><!-- Achievement 4 -->
+      <div class="intersection-animate p-6 rounded-2xl card-hover" style="background: var(--color-surface); animation-delay: 0.3s;">
+       <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background: linear-gradient(135deg, rgba(139, 115, 85, 0.1), rgba(196, 167, 125, 0.1));"><span class="text-2xl">✍️</span>
+       </div>
+       <h3 class="font-display text-lg font-semibold mb-2">Juara 1 FLS3N Cipta Puisi</h3>
+       <p class="text-sm mb-3" style="color: #666;">Tingkat SMA Se-Kabupaten</p><span class="text-xs px-3 py-1 rounded-full" style="background: rgba(139, 115, 85, 0.1); color: var(--color-primary);">Non-Akademik</span>
+      </div><!-- Achievement 5 -->
+      <div class="intersection-animate p-6 rounded-2xl card-hover" style="background: var(--color-surface); animation-delay: 0.4s;">
+       <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background: linear-gradient(135deg, rgba(139, 115, 85, 0.1), rgba(196, 167, 125, 0.1));"><span class="text-2xl">🎭</span>
+       </div>
+       <h3 class="font-display text-lg font-semibold mb-2">Juara 1 Performance Art</h3>
+       <p class="text-sm mb-3" style="color: #666;">Subang Innovation Festival</p><span class="text-xs px-3 py-1 rounded-full" style="background: rgba(139, 115, 85, 0.1); color: var(--color-primary);">Non-Akademik</span>
+      </div>
+     </div>
+    </div>
+   </section><!-- Organization Section -->
+   <section id="organization" class="py-20 lg:py-32" style="background: var(--color-surface);">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+     <div class="text-center mb-16 intersection-animate">
+      <p class="text-sm font-medium tracking-[0.3em] uppercase mb-4" style="color: var(--color-primary);">Where I Contribute</p>
+      <h2 class="section-title font-display text-4xl lg:text-5xl font-bold mx-auto">Organization</h2>
+     </div>
+     <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto"><!-- Org 1 -->
+      <div class="intersection-animate p-6 rounded-2xl card-hover border-l-4" style="background: var(--color-bg); border-color: var(--color-primary);">
+       <div class="flex items-start gap-4">
+        <div class="w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));"><span class="text-2xl text-white">🛠️</span>
+        </div>
+        <div>
+         <h3 class="font-display text-lg font-semibold mb-1">Bengkel Sastra</h3>
+         <p class="text-sm mb-2" style="color: var(--color-primary);">Anggota</p>
+         <p class="text-sm" style="color: #666;">Mengembangkan keterampilan menulis melalui workshop sastra intensif</p>
+        </div>
+       </div>
+      </div><!-- Org 2 -->
+      <div class="intersection-animate p-6 rounded-2xl card-hover border-l-4" style="background: var(--color-bg); border-color: var(--color-primary); animation-delay: 0.1s;">
+       <div class="flex items-start gap-4">
+        <div class="w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));"><span class="text-2xl text-white">📱</span>
+        </div>
+        <div>
+         <h3 class="font-display text-lg font-semibold mb-1">Sastraloka Poetika</h3>
+         <p class="text-sm mb-2" style="color: var(--color-primary);">Divisi Media Informasi</p>
+         <p class="text-sm" style="color: #666;">Mengelola konten dan media komunikasi komunitas sastra</p>
+        </div>
+       </div>
+      </div><!-- Org 3 -->
+      <div class="intersection-animate p-6 rounded-2xl card-hover border-l-4" style="background: var(--color-bg); border-color: var(--color-primary); animation-delay: 0.2s;">
+       <div class="flex items-start gap-4">
+        <div class="w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));"><span class="text-2xl text-white">✍️</span>
+        </div>
+        <div>
+         <h3 class="font-display text-lg font-semibold mb-1">Komunitas Penulis Fizzo Novel</h3>
+         <p class="text-sm mb-2" style="color: var(--color-primary);">Anggota Aktif</p>
+         <p class="text-sm" style="color: #666;">Berkolaborasi dalam penulisan novel dan karya panjang</p>
+        </div>
+       </div>
+      </div><!-- Org 4 -->
+      <div class="intersection-animate p-6 rounded-2xl card-hover border-l-4" style="background: var(--color-bg); border-color: var(--color-primary); animation-delay: 0.3s;">
+       <div class="flex items-start gap-4">
+        <div class="w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));"><span class="text-2xl text-white">📖</span>
+        </div>
+        <div>
+         <h3 class="font-display text-lg font-semibold mb-1">Komunitas Penulis Noveltoon</h3>
+         <p class="text-sm mb-2" style="color: var(--color-primary);">Anggota Aktif</p>
+         <p class="text-sm" style="color: #666;">Mengembangkan serial visual dan cerita interaktif</p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Experience Section -->
+   <section id="experience" class="py-20 lg:py-32 bg-pattern">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+     <div class="text-center mb-16 intersection-animate">
+      <p class="text-sm font-medium tracking-[0.3em] uppercase mb-4" style="color: var(--color-primary);">My Involvement</p>
+      <h2 class="section-title font-display text-4xl lg:text-5xl font-bold mx-auto">Experience</h2>
+      <p class="mt-8 text-base max-w-2xl mx-auto" style="color: #666;">Pengalaman kepanitiaan yang telah membentuk kemampuan organisasi dan kepemimpinan saya</p>
+     </div>
+     <div class="max-w-4xl mx-auto">
+      <div class="grid gap-4"><!-- Experience Items -->
+       <div class="intersection-animate p-5 rounded-xl flex items-center gap-4 card-hover" style="background: var(--color-surface);">
+        <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 text-white font-bold text-sm" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));">
+         01
+        </div>
+        <div class="flex-1">
+         <h3 class="font-medium">Panitia Lomba Sastra Antar Kelas</h3>
+         <p class="text-sm" style="color: #666;">Sekretaris - SMPN 1 Cijambe</p>
+        </div><span class="text-xs px-3 py-1 rounded-full hidden sm:inline-block" style="background: rgba(139, 115, 85, 0.1); color: var(--color-primary);">2021</span>
+       </div>
+       <div class="intersection-animate p-5 rounded-xl flex items-center gap-4 card-hover" style="background: var(--color-surface); animation-delay: 0.05s;">
+        <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 text-white font-bold text-sm" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));">
+         02
+        </div>
+        <div class="flex-1">
+         <h3 class="font-medium">Panitia Acara Isra Miraj</h3>
+         <p class="text-sm" style="color: #666;">MC</p>
+        </div><span class="text-xs px-3 py-1 rounded-full hidden sm:inline-block" style="background: rgba(139, 115, 85, 0.1); color: var(--color-primary);">2022</span>
+       </div>
+       <div class="intersection-animate p-5 rounded-xl flex items-center gap-4 card-hover" style="background: var(--color-surface); animation-delay: 0.1s;">
+        <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 text-white font-bold text-sm" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));">
+         03
+        </div>
+        <div class="flex-1">
+         <h3 class="font-medium">Panitia Lomba Agustus</h3>
+         <p class="text-sm" style="color: #666;">Sie Dokumentasi</p>
+        </div><span class="text-xs px-3 py-1 rounded-full hidden sm:inline-block" style="background: rgba(139, 115, 85, 0.1); color: var(--color-primary);">2023-2025</span>
+       </div>
+       <div class="intersection-animate p-5 rounded-xl flex items-center gap-4 card-hover" style="background: var(--color-surface); animation-delay: 0.15s;">
+        <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 text-white font-bold text-sm" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));">
+         04
+        </div>
+        <div class="flex-1">
+         <h3 class="font-medium">Panitia Lomba Bahasa Sastra</h3>
+         <p class="text-sm" style="color: #666;">PJ (Penanggung Jawab)</p>
+        </div><span class="text-xs px-3 py-1 rounded-full hidden sm:inline-block" style="background: rgba(139, 115, 85, 0.1); color: var(--color-primary);">2024</span>
+       </div>
+       <div class="intersection-animate p-5 rounded-xl flex items-center gap-4 card-hover" style="background: var(--color-surface); animation-delay: 0.2s;">
+        <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 text-white font-bold text-sm" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));">
+         05
+        </div>
+        <div class="flex-1">
+         <h3 class="font-medium">Team Kurator Pameran Seni Kayu</h3>
+         <p class="text-sm" style="color: #666;">Kurasi - SMAN 1 SUBANG</p>
+        </div><span class="text-xs px-3 py-1 rounded-full hidden sm:inline-block" style="background: rgba(139, 115, 85, 0.1); color: var(--color-primary);">2024</span>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Portfolio Section -->
+   <section id="portfolio" class="py-20 lg:py-32" style="background: var(--color-surface);">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+     <div class="text-center mb-16 intersection-animate">
+      <p class="text-sm font-medium tracking-[0.3em] uppercase mb-4" style="color: var(--color-primary);">Creative Works</p>
+      <h2 class="section-title font-display text-4xl lg:text-5xl font-bold mx-auto">My Portfolio</h2>
+      <p class="mt-8 text-base max-w-2xl mx-auto" style="color: #666;">Karya-karya sastra yang telah dipublikasikan dan menjadi bagian dari perjalanan kreatif saya</p>
+     </div><!-- Portfolio Items -->
+     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto"><!-- Portfolio Item 1 -->
+      <div class="intersection-animate rounded-2xl overflow-hidden card-hover" style="background: var(--color-bg);">
+       <div class="aspect-square flex items-center justify-center text-6xl" style="background: linear-gradient(135deg, rgba(139, 115, 85, 0.1), rgba(196, 167, 125, 0.1));">
+        📕
+       </div>
+       <div class="p-6">
+        <h3 class="font-display text-xl font-semibold mb-2">"Getir Kata yang Tak Sempat Terucap"</h3>
+        <p class="text-sm mb-4" style="color: #666;">Kumpulan Puisi Terbitan</p>
+        <p class="text-sm leading-relaxed mb-4" style="color: #555;">Sebuah koleksi puisi yang mengeksplorasi tema kehidupan, perjalanan pribadi, dan makna sastra. Setiap puisi adalah cerminan dari pemahaman mendalam tentang emosi dan pengalaman hidup.</p>
+        <div class="flex flex-wrap gap-2"><span class="text-xs px-3 py-1 rounded-full" style="background: rgba(139, 115, 85, 0.1); color: var(--color-primary);">Puisi</span> <span class="text-xs px-3 py-1 rounded-full" style="background: rgba(139, 115, 85, 0.1); color: var(--color-primary);">Publikasi</span> <span class="text-xs px-3 py-1 rounded-full" style="background: rgba(139, 115, 85, 0.1); color: var(--color-primary);">Sastra</span>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section>
+   <section id="contact" class="py-20 lg:py-32" style="background: var(--color-surface);">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+     <div class="grid lg:grid-cols-2 gap-16"><!-- Left - Info -->
+      <div class="intersection-animate">
+       <p class="text-sm font-medium tracking-[0.3em] uppercase mb-4" style="color: var(--color-primary);">Get In Touch</p>
+       <h2 class="section-title font-display text-4xl lg:text-5xl font-bold mb-8">Contact Me</h2>
+       <p class="text-base leading-relaxed mb-12" style="color: #666;">Tertarik untuk berkolaborasi atau ingin berdiskusi tentang sastra? Jangan ragu untuk menghubungi saya!</p>
+       <div class="space-y-6"><!-- Email -->
+        <div class="flex items-center gap-4">
+         <div class="w-14 h-14 rounded-xl flex items-center justify-center" style="background: linear-gradient(135deg, rgba(139, 115, 85, 0.1), rgba(196, 167, 125, 0.1));">
+          <svg class="w-6 h-6" style="color: var(--color-primary);" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+         </div>
+         <div>
+          <p class="text-sm font-medium" style="color: #666;">Email</p>
+          <p id="contact-email" class="font-medium">zahwasyifa160@gmail.com</p>
+         </div>
+        </div><!-- WhatsApp -->
+        <div class="flex items-center gap-4">
+         <div class="w-14 h-14 rounded-xl flex items-center justify-center" style="background: linear-gradient(135deg, rgba(139, 115, 85, 0.1), rgba(196, 167, 125, 0.1));">
+          <svg class="w-6 h-6" style="color: var(--color-primary);" fill="currentColor" viewbox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+          </svg>
+         </div>
+         <div>
+          <p class="text-sm font-medium" style="color: #666;">WhatsApp</p>
+          <p class="font-medium">085935296970</p>
+         </div>
+        </div><!-- Instagram -->
+        <div class="flex items-center gap-4">
+         <div class="w-14 h-14 rounded-xl flex items-center justify-center" style="background: linear-gradient(135deg, rgba(139, 115, 85, 0.1), rgba(196, 167, 125, 0.1));">
+          <svg class="w-6 h-6" style="color: var(--color-primary);" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+          </svg>
+         </div>
+         <div>
+          <p class="text-sm font-medium" style="color: #666;">Instagram</p>
+          <p class="font-medium">@dd_xyva</p>
+         </div>
+        </div>
+       </div>
+      </div><!-- Right - Form -->
+      <div class="intersection-animate" style="animation-delay: 0.2s;">
+       <form id="contact-form" class="p-8 rounded-3xl" style="background: var(--color-bg);">
+        <h3 class="font-display text-2xl font-semibold mb-6">Kirim Pesan</h3>
+        <div class="space-y-5">
+         <div><label for="name" class="block text-sm font-medium mb-2">Nama</label> <input type="text" id="name" name="name" required class="w-full px-5 py-4 rounded-xl border-2 transition-all focus:outline-none" style="background: var(--color-surface); border-color: transparent;" onfocus="this.style.borderColor='var(--color-primary)'" onblur="this.style.borderColor='transparent'" placeholder="Nama lengkap Anda">
+         </div>
+         <div><label for="email" class="block text-sm font-medium mb-2">Email</label> <input type="email" id="email" name="email" required class="w-full px-5 py-4 rounded-xl border-2 transition-all focus:outline-none" style="background: var(--color-surface); border-color: transparent;" onfocus="this.style.borderColor='var(--color-primary)'" onblur="this.style.borderColor='transparent'" placeholder="email@example.com">
+         </div>
+         <div><label for="message" class="block text-sm font-medium mb-2">Pesan</label> <textarea id="message" name="message" rows="5" required class="w-full px-5 py-4 rounded-xl border-2 transition-all focus:outline-none resize-none" style="background: var(--color-surface); border-color: transparent;" onfocus="this.style.borderColor='var(--color-primary)'" onblur="this.style.borderColor='transparent'" placeholder="Tulis pesan Anda di sini..."></textarea>
+         </div><button type="submit" class="btn-primary w-full px-8 py-4 rounded-xl text-white font-medium text-sm tracking-wide"> Kirim Pesan </button>
+        </div><!-- Success Message -->
+        <div id="success-message" class="hidden mt-6 p-4 rounded-xl text-center" style="background: rgba(34, 197, 94, 0.1); color: #16a34a;">
+         <p class="font-medium">✓ Pesan berhasil dikirim!</p>
+        </div>
+       </form>
+      </div>
+     </div>
+    </div>
+   </section><!-- Footer -->
+   <footer class="py-12" style="background: var(--color-text); color: white;">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+     <div class="flex flex-col items-center text-center"><!-- Logo --> <a href="#home" class="font-display text-3xl font-bold mb-4" style="color: var(--color-secondary);"> Zahwa<span class="text-white">.</span> </a> <!-- Quote -->
+      <p class="text-base mb-8 max-w-md opacity-80 italic font-display">"Menulis adalah cara terbaik untuk berbicara tanpa diganggu."</p><!-- Social Media -->
+      <div class="flex gap-4 mb-8"><a href="#" class="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110" style="background: rgba(255,255,255,0.1);">
+        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+        </svg></a> <a href="#" class="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110" style="background: rgba(255,255,255,0.1);">
+        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+        </svg></a> <a href="#" class="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110" style="background: rgba(255,255,255,0.1);">
+        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+        </svg></a>
+      </div><!-- Copyright -->
+      <div class="pt-8 border-t w-full" style="border-color: rgba(255,255,255,0.1);">
+       <p class="text-sm opacity-60">© Zahwa Syifa – 2026. All rights reserved.</p>
+      </div>
+     </div>
+    </div>
+   </footer>
+  </div>
+  <script>
+    // Default configuration
+    const defaultConfig = {
+      hero_title: "I'm Zahwa Syifa",
+      hero_subtitle: "12th Grade of Senior High School",
+      about_title: "About Me",
+      contact_email: "zahwasyifa@email.com",
+      background_color: "#FDFBF7",
+      surface_color: "#FFFFFF",
+      text_color: "#1A1A1A",
+      primary_color: "#8B7355",
+      secondary_color: "#C4A77D"
+    };
+
+    // Initialize Element SDK
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange: async (config) => {
+          // Update hero title
+          const heroTitle = document.getElementById('hero-title');
+          if (heroTitle) {
+            heroTitle.innerHTML = (config.hero_title || defaultConfig.hero_title).replace(
+              'Zahwa Syifa',
+              '<span class="text-gradient">Zahwa Syifa</span>'
+            );
+          }
+
+          // Update hero subtitle
+          const heroSubtitle = document.getElementById('hero-subtitle');
+          if (heroSubtitle) {
+            heroSubtitle.textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
+          }
+
+          // Update about title
+          const aboutTitle = document.getElementById('about-title');
+          if (aboutTitle) {
+            aboutTitle.textContent = config.about_title || defaultConfig.about_title;
+          }
+
+          // Update contact email
+          const contactEmail = document.getElementById('contact-email');
+          if (contactEmail) {
+            contactEmail.textContent = config.contact_email || defaultConfig.contact_email;
+          }
+
+          // Update colors
+          document.documentElement.style.setProperty('--color-bg', config.background_color || defaultConfig.background_color);
+          document.documentElement.style.setProperty('--color-surface', config.surface_color || defaultConfig.surface_color);
+          document.documentElement.style.setProperty('--color-text', config.text_color || defaultConfig.text_color);
+          document.documentElement.style.setProperty('--color-primary', config.primary_color || defaultConfig.primary_color);
+          document.documentElement.style.setProperty('--color-secondary', config.secondary_color || defaultConfig.secondary_color);
+        },
+        mapToCapabilities: (config) => ({
+          recolorables: [
+            {
+              get: () => config.background_color || defaultConfig.background_color,
+              set: (value) => {
+                config.background_color = value;
+                window.elementSdk.setConfig({ background_color: value });
+              }
+            },
+            {
+              get: () => config.surface_color || defaultConfig.surface_color,
+              set: (value) => {
+                config.surface_color = value;
+                window.elementSdk.setConfig({ surface_color: value });
+              }
+            },
+            {
+              get: () => config.text_color || defaultConfig.text_color,
+              set: (value) => {
+                config.text_color = value;
+                window.elementSdk.setConfig({ text_color: value });
+              }
+            },
+            {
+              get: () => config.primary_color || defaultConfig.primary_color,
+              set: (value) => {
+                config.primary_color = value;
+                window.elementSdk.setConfig({ primary_color: value });
+              }
+            },
+            {
+              get: () => config.secondary_color || defaultConfig.secondary_color,
+              set: (value) => {
+                config.secondary_color = value;
+                window.elementSdk.setConfig({ secondary_color: value });
+              }
+            }
+          ],
+          borderables: [],
+          fontEditable: undefined,
+          fontSizeable: undefined
+        }),
+        mapToEditPanelValues: (config) => new Map([
+          ["hero_title", config.hero_title || defaultConfig.hero_title],
+          ["hero_subtitle", config.hero_subtitle || defaultConfig.hero_subtitle],
+          ["about_title", config.about_title || defaultConfig.about_title],
+          ["contact_email", config.contact_email || defaultConfig.contact_email]
+        ])
+      });
+    }
+
+    // Mobile Menu Toggle
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('active');
+    });
+
+    function closeMobileMenu() {
+      hamburger.classList.remove('active');
+      mobileMenu.classList.remove('active');
+    }
+
+    // Header scroll effect
+    const header = document.getElementById('header');
+    let lastScroll = 0;
+
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.scrollY;
+      
+      if (currentScroll > 100) {
+        header.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.08)';
+      } else {
+        header.style.boxShadow = 'none';
+      }
+      
+      lastScroll = currentScroll;
+    });
+
+    // Active navigation link
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (scrollY >= sectionTop - 200) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').slice(1) === current) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // Intersection Observer for animations
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.intersection-animate').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Contact form submission
+    const contactForm = document.getElementById('contact-form');
+    const successMessage = document.getElementById('success-message');
+
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      // Show success message
+      successMessage.classList.remove('hidden');
+      
+      // Reset form
+      contactForm.reset();
+      
+      // Hide success message after 3 seconds
+      setTimeout(() => {
+        successMessage.classList.add('hidden');
+      }, 3000);
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c986120816a8247',t:'MTc3MDM1NzEyNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html<!doctype html>
+<html lang="id" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zahwa Syifa - Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    
+    :root {
+      --color-bg: #FDFBF7;
+      --color-surface: #FFFFFF;
+      --color-text: #1A1A1A;
+      --color-primary: #8B7355;
+      --color-secondary: #C4A77D;
+    }
+    
+    * {
+      scroll-behavior: smooth;
+    }
+    
+    .font-display {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+    }
+    
+    .font-body {
+      font-family: 'Inter', system-ui, sans-serif;
+    }
+    
+    .text-gradient {
+      background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .animate-fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 0.8s ease forwards;
+    }
+    
+    .animate-fade-up-delay-1 { animation-delay: 0.1s; }
+    .animate-fade-up-delay-2 { animation-delay: 0.2s; }
+    .animate-fade-up-delay-3 { animation-delay: 0.3s; }
+    .animate-fade-up-delay-4 { animation-delay: 0.4s; }
+    
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+    }
+    
+    @keyframes pulse-soft {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 0.7; }
+    }
+    
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    .animate-pulse-soft {
+      animation: pulse-soft 4s ease-in-out infinite;
+    }
+    
+    .shape-blob {
+      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
+    
+    .nav-link {
+      position: relative;
+      transition: color 0.3s ease;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--color-primary);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+    
+    .card-hover {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 50px -12px rgba(139, 115, 85, 0.15);
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s ease;
+    }
+    
+    .btn-primary:hover::before {
+      left: 100%;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px -10px rgba(139, 115, 85, 0.5);
+    }
+    
+    .btn-secondary {
+      border: 2px solid var(--color-primary);
+      transition: all 0.3s ease;
+    }
+    
+    .btn-secondary:hover {
+      background: var(--color-primary);
+      color: white;
+      transform: translateY(-2px);
+    }
+    
+    .progress-bar {
+      background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+      transition: width 1.5s ease;
+    }
+    
+    .timeline-line {
+      background: linear-gradient(180deg, var(--color-primary), var(--color-secondary));
+    }
+    
+    .section-title {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+      border-radius: 2px;
+    }
+    
+    .bg-pattern {
+      background-image: radial-gradient(circle at 2px 2px, rgba(139, 115, 85, 0.1) 1px, transparent 0);
+      background-size: 40px 40px;
+    }
+    
+    .scroll-indicator {
+      animation: bounce 2s infinite;
+    }
+    
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-10px); }
+      60% { transform: translateY(-5px); }
+    }
+    
+    .mobile-menu {
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+    }
+    
+    .mobile-menu.active {
+      transform: translateX(0);
+    }
+    
+    .hamburger-line {
+      transition: all 0.3s ease;
+    }
+    
+    .hamburger.active .hamburger-line:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    .hamburger.active .hamburger-line:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .hamburger.active .hamburger-line:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -6px);
+    }
+
+    .intersection-animate {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .intersection-animate.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full font-body" style="background-color: var(--color-bg); color: var(--color-text);">
+  <div id="app-wrapper" class="w-full h-full overflow-auto"><!-- Header -->
+   <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" style="background: rgba(253, 251, 247, 0.95); backdrop-filter: blur(10px);">
+    <nav class="max-w-7xl mx-auto px-6 lg:px-8">
+     <div class="flex items-center justify-between h-20"><!-- Logo --> <a href="#home" class="font-display text-2xl font-bold" style="color: var(--color-primary);"> Zahwa<span style="color: var(--color-secondary);">.</span> </a> <!-- Desktop Navigation -->
+      <div class="hidden lg:flex items-center gap-8"><a href="#home" class="nav-link text-sm font-medium tracking-wide active">Home</a> <a href="#about" class="nav-link text-sm font-medium tracking-wide">About</a> <a href="#skills" class="nav-link text-sm font-medium tracking-wide">Skills</a> <a href="#education" class="nav-link text-sm font-medium tracking-wide">Education</a> <a href="#achievement" class="nav-link text-sm font-medium tracking-wide">Achievement</a> <a href="#organization" class="nav-link text-sm font-medium tracking-wide">Organization</a> <a href="#portfolio" class="nav-link text-sm font-medium tracking-wide">Portfolio</a> <a href="#experience" class="nav-link text-sm font-medium tracking-wide">Experience</a> <a href="#contact" class="nav-link text-sm font-medium tracking-wide">Contact</a>
+      </div><!-- Mobile Menu Button --> <button id="hamburger" class="hamburger lg:hidden flex flex-col gap-1.5 p-2"> <span class="hamburger-line w-6 h-0.5 rounded" style="background: var(--color-text);"></span> <span class="hamburger-line w-6 h-0.5 rounded" style="background: var(--color-text);"></span> <span class="hamburger-line w-6 h-0.5 rounded" style="background: var(--color-text);"></span> </button>
+     </div>
+    </nav><!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu fixed top-20 right-0 bottom-0 w-72 lg:hidden" style="background: var(--color-surface); box-shadow: -10px 0 30px rgba(0,0,0,0.1);">
+     <div class="flex flex-col p-8 gap-6"><a href="#home" class="mobile-nav-link text-lg font-medium" onclick="closeMobileMenu()">Home</a> <a href="#about" class="mobile-nav-link text-lg font-medium" onclick="closeMobileMenu()">About</a> <a href="#skills" class="mobile-nav-link text-lg font-medium" onclick="closeMobileMenu()">Skills</a> <a href="#education" class="mobile-nav-link text-lg font-medium" onclick="closeMobileMenu()">Education</a> <a href="#achievement" class="mobile-nav-link text-lg font-medium" onclick="closeMobileMenu()">Achievement</a> <a href="#organization" class="mobile-nav-link text-lg font-medium" onclick="closeMobileMenu()">Organization</a> <a href="#portfolio" class="mobile-nav-link text-lg font-medium" onclick="closeMobileMenu()">Portfolio</a> <a href="#experience" class="mobile-nav-link text-lg font-medium" onclick="closeMobileMenu()">Experience</a> <a href="#contact" class="mobile-nav-link text-lg font-medium" onclick="closeMobileMenu()">Contact</a>
+     </div>
+    </div>
+   </header><!-- Hero Section -->
+   <section id="home" class="min-h-screen pt-20 relative overflow-hidden bg-pattern"><!-- Background Elements -->
+    <div class="absolute top-20 right-10 w-72 h-72 shape-blob animate-float animate-pulse-soft" style="background: linear-gradient(135deg, rgba(139, 115, 85, 0.1), rgba(196, 167, 125, 0.1));"></div>
+    <div class="absolute bottom-20 left-10 w-48 h-48 shape-blob animate-float" style="background: linear-gradient(135deg, rgba(196, 167, 125, 0.15), rgba(139, 115, 85, 0.1)); animation-delay: 2s;"></div>
+    <div class="absolute top-1/2 left-1/4 w-24 h-24 rounded-full animate-pulse-soft" style="background: rgba(139, 115, 85, 0.05);"></div><!-- Large Background Text -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-display text-[15vw] font-bold opacity-[0.03] pointer-events-none select-none whitespace-nowrap">
+     PORTFOLIO
+    </div>
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-12 lg:py-20">
+     <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center min-h-[calc(100vh-120px)]"><!-- Left Content -->
+      <div class="order-2 lg:order-1 text-center lg:text-left">
+       <p class="animate-fade-up text-sm font-medium tracking-[0.3em] uppercase mb-4" style="color: var(--color-primary);">Welcome to my portfolio</p>
+       <h1 id="hero-title" class="animate-fade-up animate-fade-up-delay-1 font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-6">I'm <span class="text-gradient">Zahwa Syifa</span></h1>
+       <p id="hero-subtitle" class="animate-fade-up animate-fade-up-delay-2 text-xl lg:text-2xl font-light mb-4" style="color: var(--color-primary);">12th Grade of Senior High School</p>
+       <p class="animate-fade-up animate-fade-up-delay-3 text-base lg:text-lg leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0" style="color: #666;">Pelajar dengan minat besar pada Bahasa dan Sastra Indonesia, khususnya puisi, novel, dan drama. Bermimpi menjadi penulis yang dapat menginspirasi banyak orang.</p>
+       <div class="animate-fade-up animate-fade-up-delay-4 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"><a href="#about" class="btn-primary px-8 py-4 rounded-full text-white font-medium text-sm tracking-wide"> Lihat Portofolio </a> <a href="#contact" class="btn-secondary px-8 py-4 rounded-full font-medium text-sm tracking-wide" style="color: var(--color-primary);"> Hubungi Saya </a>
+       </div>
+      </div><!-- Right Content - Profile -->
+      <div class="order-1 lg:order-2 flex justify-center lg:justify-end">
+       <div class="relative animate-fade-up"><!-- Decorative Frame -->
+        <div class="absolute -inset-4 rounded-3xl rotate-6" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary)); opacity: 0.2;"></div>
+        <div class="absolute -inset-4 rounded-3xl -rotate-3" style="border: 2px solid var(--color-primary); opacity: 0.3;"></div><!-- Profile Image Container -->
+        <div class="relative w-64 h-80 sm:w-72 sm:h-96 lg:w-80 lg:h-[420px] rounded-3xl overflow-hidden" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));"><img src="https://i.ibb.co.com/HDKDzcGc/zahwa.jpg" alt="Zahwa Syifa" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Profile image failed to load:', this.src); this.style.display='none';"> <!-- Overlay Pattern -->
+         <div class="absolute inset-0 bg-pattern opacity-20"></div>
+        </div><!-- Floating Elements -->
+        <div class="absolute -top-6 -right-6 w-16 h-16 rounded-2xl flex items-center justify-center animate-float" style="background: var(--color-surface); box-shadow: 0 10px 40px rgba(139, 115, 85, 0.2);"><span class="text-2xl">✍️</span>
+        </div>
+        <div class="absolute -bottom-4 -left-4 w-14 h-14 rounded-xl flex items-center justify-center animate-float" style="background: var(--color-surface); box-shadow: 0 10px 40px rgba(139, 115, 85, 0.2); animation-delay: 1s;"><span class="text-xl">📚</span>
+        </div>
+       </div>
+      </div>
+     </div><!-- Scroll Indicator -->
+     <div class="hidden lg:flex justify-center mt-8"><a href="#about" class="scroll-indicator flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-opacity"> <span class="text-xs tracking-widest uppercase">Scroll</span>
+       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+       </svg></a>
+     </div>
+    </div>
+   </section><!-- About Section -->
+   <section id="about" class="py-20 lg:py-32 relative" style="background: var(--color-surface);">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+     <div class="grid lg:grid-cols-2 gap-16 items-start"><!-- Left - Title & Image -->
+      <div class="intersection-animate">
+       <p class="text-sm font-medium tracking-[0.3em] uppercase mb-4" style="color: var(--color-primary);">Get to know me</p>
+       <h2 id="about-title" class="section-title font-display text-4xl lg:text-5xl font-bold mb-12">About Me</h2><!-- Stats Cards -->
+       <div class="grid grid-cols-2 gap-4 mt-16">
+        <div class="p-6 rounded-2xl card-hover" style="background: var(--color-bg);"><span class="text-3xl font-display font-bold text-gradient">4</span>
+         <p class="text-sm mt-2" style="color: #666;">Tahun Pengalaman Sastra</p>
+        </div>
+        <div class="p-6 rounded-2xl card-hover" style="background: var(--color-bg);"><span class="text-3xl font-display font-bold text-gradient">5</span>
+         <p class="text-sm mt-2" style="color: #666;">Lomba Bahasa Sastra</p>
+        </div>
+        <div class="p-6 rounded-2xl card-hover" style="background: var(--color-bg);"><span class="text-3xl font-display font-bold text-gradient">11</span>
+         <p class="text-sm mt-2" style="color: #666;">Kepanitiaan</p>
+        </div>
+        <div class="p-6 rounded-2xl card-hover" style="background: var(--color-bg);"><span class="text-3xl font-display font-bold text-gradient">1</span>
+         <p class="text-sm mt-2" style="color: #666;">Organisasi Aktif</p>
+        </div>
+       </div>
+      </div><!-- Right - Content -->
+      <div class="intersection-animate space-y-8" style="animation-delay: 0.2s;"><!-- Background -->
+       <div>
+        <h3 class="font-display text-xl font-semibold mb-3 flex items-center gap-3"><span class="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));">01</span> Latar Belakang</h3>
+        <p class="text-base leading-relaxed pl-14" style="color: #555;">Zahwa Syifa adalah anak pertama dari dua bersaudara dengan status sebagai pelajar. Ia memiliki minat besar pada dunia sastra, khususnya puisi, drama dan novel yang menjadi sarana pengembangan kreativitas dan ekspresi.</p>
+       </div><!-- Minat & Tujuan -->
+       <div>
+        <h3 class="font-display text-xl font-semibold mb-3 flex items-center gap-3"><span class="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));">02</span> Minat &amp; Tujuan</h3>
+        <div class="pl-14">
+         <p class="text-sm font-medium mb-2" style="color: var(--color-primary);">Minat:</p>
+         <p class="text-base mb-4" style="color: #555;">Bahasa dan Sastra Indonesia, berpuisi, membaca novel, menulis puisi</p>
+         <p class="text-sm font-medium mb-2" style="color: var(--color-primary);">Tujuan:</p>
+         <ul class="space-y-2">
+          <li class="flex items-center gap-2 text-base" style="color: #555;">
+           <svg class="w-4 h-4 flex-shrink-0" style="color: var(--color-secondary);" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+           </svg> Menjadi penulis novel</li>
+          <li class="flex items-center gap-2 text-base" style="color: #555;">
+           <svg class="w-4 h-4 flex-shrink-0" style="color: var(--color-secondary);" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+           </svg> Membangun sebuah toko buku</li>
+          <li class="flex items-center gap-2 text-base" style="color: #555;">
+           <svg class="w-4 h-4 flex-shrink-0" style="color: var(--color-secondary);" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+           </svg> Menjadi penulis naskah drama</li>
+          <li class="flex items-center gap-2 text-base" style="color: #555;">
+           <svg class="w-4 h-4 flex-shrink-0" style="color: var(--color-secondary);" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+           </svg> Melestarikan budaya Bahasa Indonesia</li>
+         </ul>
+        </div>
+       </div><!-- Hobi -->
+       <div>
+        <h3 class="font-display text-xl font-semibold mb-3 flex items-center gap-3"><span class="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));">03</span> Hobi</h3>
+        <div class="pl-14 flex flex-wrap gap-3"><span class="px-4 py-2 rounded-full text-sm font-medium" style="background: var(--color-bg); color: var(--color-primary);">📖 Membaca Novel</span> <span class="px-4 py-2 rounded-full text-sm font-medium" style="background: var(--color-bg); color: var(--color-primary);">🎙️ Menonton Podcast</span> <span class="px-4 py-2 rounded-full text-sm font-medium" style="background: var(--color-bg); color: var(--color-primary);">🎵 Mendengarkan Musik</span>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Skills Section -->
+   <section id="skills" class="py-20 lg:py-32 bg-pattern">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+     <div class="text-center mb-16 intersection-animate">
+      <p class="text-sm font-medium tracking-[0.3em] uppercase mb-4" style="color: var(--color-primary);">What I'm Good At</p>
+      <h2 class="section-title font-display text-4xl lg:text-5xl font-bold mx-auto">My Skills</h2>
+     </div>
+     <div class="grid lg:grid-cols-2 gap-16"><!-- Left Column - Hard Skills -->
+      <div class="space-y-8">
+       <div class="intersection-animate">
+        <h3 class="font-display text-2xl font-semibold mb-8 flex items-center gap-3"><span class="w-8 h-8 rounded-lg flex items-center justify-center text-white text-sm" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));">💻</span> Hard Skills</h3>
+       </div><!-- Hard Skill 1 -->
+       <div class="intersection-animate" style="animation-delay: 0.1s;">
+        <div class="flex justify-between items-center mb-3"><span class="font-medium">Penguasaan Microsoft Office</span> <span class="text-sm font-medium" style="color: var(--color-primary);">90%</span>
+        </div>
+        <div class="h-3 rounded-full overflow-hidden" style="background: rgba(139, 115, 85, 0.1);">
+         <div class="progress-bar h-full rounded-full" style="width: 90%;"></div>
+        </div>
+       </div><!-- Hard Skill 2 -->
+       <div class="intersection-animate" style="animation-delay: 0.2s;">
+        <div class="flex justify-between items-center mb-3"><span class="font-medium">Copywriting</span> <span class="text-sm font-medium" style="color: var(--color-primary);">88%</span>
+        </div>
+        <div class="h-3 rounded-full overflow-hidden" style="background: rgba(139, 115, 85, 0.1);">
+         <div class="progress-bar h-full rounded-full" style="width: 88%;"></div>
+        </div>
+       </div>
+      </div><!-- Right Column - Creative & Soft Skills -->
+      <div class="space-y-8"><!-- Creative Skills Section -->
+       <div class="space-y-8">
+        <div class="intersection-animate" style="animation-delay: 0.1s;">
+         <h3 class="font-display text-2xl font-semibold mb-8 flex items-center gap-3"><span class="w-8 h-8 rounded-lg flex items-center justify-center text-white text-sm" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));">✨</span> Creative Skills</h3>
+        </div><!-- Creative Skill 1 -->
+        <div class="intersection-animate" style="animation-delay: 0.2s;">
+         <div class="flex justify-between items-center mb-3"><span class="font-medium">Menulis Puisi</span> <span class="text-sm font-medium" style="color: var(--color-primary);">95%</span>
+         </div>
+         <div class="h-3 rounded-full overflow-hidden" style="background: rgba(139, 115, 85, 0.1);">
+          <div class="progress-bar h-full rounded-full" style="width: 95%;"></div>
+         </div>
+        </div><!-- Creative Skill 2 -->
+        <div class="intersection-animate" style="animation-delay: 0.3s;">
+         <div class="flex justify-between items-center mb-3"><span class="font-medium">Menulis Cerpen</span> <span class="text-sm font-medium" style="color: var(--color-primary);">88%</span>
+         </div>
+         <div class="h-3 rounded-full overflow-hidden" style="background: rgba(139, 115, 85, 0.1);">
+          <div class="progress-bar h-full rounded-full" style="width: 88%;"></div>
+         </div>
+        </div><!-- Creative Skill 3 -->
+        <div class="intersection-animate" style="animation-delay: 0.4s;">
+         <div class="flex justify-between items-center mb-3"><span class="font-medium">Analisis Sastra</span> <span class="text-sm font-medium" style="color: var(--color-primary);">85%</span>
+         </div>
+         <div class="h-3 rounded-full overflow-hidden" style="background: rgba(139, 115, 85, 0.1);">
+          <div class="progress-bar h-full rounded-full" style="width: 85%;"></div>
+         </div>
+        </div>
+       </div><!-- Soft Skills Section -->
+       <div class="space-y-8 mt-12 pt-8 border-t" style="border-color: rgba(139, 115, 85, 0.1);">
+        <div class="intersection-animate" style="animation-delay: 0.1s;">
+         <h3 class="font-display text-2xl font-semibold mb-8 flex items-center gap-3"><span class="w-8 h-8 rounded-lg flex items-center justify-center text-white text-sm" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));">🤝</span> Soft Skills</h3>
+        </div><!-- Soft Skill 1 -->
+        <div class="intersection-animate" style="animation-delay: 0.2s;">
+         <div class="flex justify-between items-center mb-3"><span class="font-medium">Communication</span> <span class="text-sm font-medium" style="color: var(--color-primary);">92%</span>
+         </div>
+         <div class="h-3 rounded-full overflow-hidden" style="background: rgba(139, 115, 85, 0.1);">
+          <div class="progress-bar h-full rounded-full" style="width: 92%;"></div>
+         </div>
+        </div><!-- Soft Skill 2 -->
+        <div class="intersection-animate" style="animation-delay: 0.3s;">
+         <div class="flex justify-between items-center mb-3"><span class="font-medium">Problem Solving</span> <span class="text-sm font-medium" style="color: var(--color-primary);">87%</span>
+         </div>
+         <div class="h-3 rounded-full overflow-hidden" style="background: rgba(139, 115, 85, 0.1);">
+          <div class="progress-bar h-full rounded-full" style="width: 87%;"></div>
+         </div>
+        </div><!-- Soft Skill 3 -->
+        <div class="intersection-animate" style="animation-delay: 0.4s;">
+         <div class="flex justify-between items-center mb-3"><span class="font-medium">Kreativitas Bahasa</span> <span class="text-sm font-medium" style="color: var(--color-primary);">90%</span>
+         </div>
+         <div class="h-3 rounded-full overflow-hidden" style="background: rgba(139, 115, 85, 0.1);">
+          <div class="progress-bar h-full rounded-full" style="width: 90%;"></div>
+         </div>
+        </div><!-- Soft Skill 4 -->
+        <div class="intersection-animate" style="animation-delay: 0.5s;">
+         <div class="flex justify-between items-center mb-3"><span class="font-medium">Public Speaking</span> <span class="text-sm font-medium" style="color: var(--color-primary);">82%</span>
+         </div>
+         <div class="h-3 rounded-full overflow-hidden" style="background: rgba(139, 115, 85, 0.1);">
+          <div class="progress-bar h-full rounded-full" style="width: 82%;"></div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Education Section -->
+   <section id="education" class="py-20 lg:py-32" style="background: var(--color-surface);">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+     <div class="text-center mb-16 intersection-animate">
+      <p class="text-sm font-medium tracking-[0.3em] uppercase mb-4" style="color: var(--color-primary);">My Journey</p>
+      <h2 class="section-title font-display text-4xl lg:text-5xl font-bold mx-auto">Education</h2>
+     </div>
+     <div class="max-w-3xl mx-auto relative"><!-- Timeline Line -->
+      <div class="absolute left-8 top-0 bottom-0 w-0.5 timeline-line hidden sm:block"></div><!-- Timeline Items -->
+      <div class="space-y-8"><!-- Item 1 -->
+       <div class="intersection-animate relative flex gap-6 sm:gap-8">
+        <div class="hidden sm:flex w-16 h-16 rounded-full flex-shrink-0 items-center justify-center text-white font-display font-bold text-lg z-10" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));">
+         🎓
+        </div>
+        <div class="flex-1 p-6 rounded-2xl card-hover" style="background: var(--color-bg);"><span class="text-xs font-medium tracking-wider uppercase px-3 py-1 rounded-full inline-block mb-3" style="background: rgba(139, 115, 85, 0.1); color: var(--color-primary);"> 2023 - Sekarang </span>
+         <h3 class="font-display text-xl font-semibold mb-2">SMAN 1 Subang</h3>
+         <p class="text-sm" style="color: #666;">Senior High School</p>
+        </div>
+       </div><!-- Item 2 -->
+       <div class="intersection-animate relative flex gap-6 sm:gap-8" style="animation-delay: 0.1s;">
+        <div class="hidden sm:flex w-16 h-16 rounded-full flex-shrink-0 items-center justify-center text-white font-display font-bold text-lg z-10" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));">
+         📚
+        </div>
+        <div class="flex-1 p-6 rounded-2xl card-hover" style="background: var(--color-bg);"><span class="text-xs font-medium tracking-wider uppercase px-3 py-1 rounded-full inline-block mb-3" style="background: rgba(139, 115, 85, 0.1); color: var(--color-primary);"> 2020 - 2023 </span>
+         <h3 class="font-display text-xl font-semibold mb-2">SMPN 1 Cijambe</h3>
+         <p class="text-sm" style="color: #666;">Junior High School</p>
+        </div>
+       </div><!-- Item 3 -->
+       <div class="intersection-animate relative flex gap-6 sm:gap-8" style="animation-delay: 0.2s;">
+        <div class="hidden sm:flex w-16 h-16 rounded-full flex-shrink-0 items-center justify-center text-white font-display font-bold text-lg z-10" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));">
+         ✏️
+        </div>
+        <div class="flex-1 p-6 rounded-2xl card-hover" style="background: var(--color-bg);"><span class="text-xs font-medium tracking-wider uppercase px-3 py-1 rounded-full inline-block mb-3" style="background: rgba(139, 115, 85, 0.1); color: var(--color-primary);"> 2017 - 2020 </span>
+         <h3 class="font-display text-xl font-semibold mb-2">SDN Tanjung Wangi</h3>
+         <p class="text-sm" style="color: #666;">Elementary School</p>
+        </div>
+       </div><!-- Item 4 -->
+       <div class="intersection-animate relative flex gap-6 sm:gap-8" style="animation-delay: 0.3s;">
+        <div class="hidden sm:flex w-16 h-16 rounded-full flex-shrink-0 items-center justify-center text-white font-display font-bold text-lg z-10" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));">
+         🌸
+        </div>
+        <div class="flex-1 p-6 rounded-2xl card-hover" style="background: var(--color-bg);"><span class="text-xs font-medium tracking-wider uppercase px-3 py-1 rounded-full inline-block mb-3" style="background: rgba(139, 115, 85, 0.1); color: var(--color-primary);"> 2015 </span>
+         <h3 class="font-display text-xl font-semibold mb-2">TK Az-Zahra</h3>
+         <p class="text-sm" style="color: #666;">Kindergarten</p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Achievement Section -->
+   <section id="achievement" class="py-20 lg:py-32 bg-pattern">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+     <div class="text-center mb-16 intersection-animate">
+      <p class="text-sm font-medium tracking-[0.3em] uppercase mb-4" style="color: var(--color-primary);">My Accomplishments</p>
+      <h2 class="section-title font-display text-4xl lg:text-5xl font-bold mx-auto">Achievement</h2>
+     </div>
+     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"><!-- Achievement 1 -->
+      <div class="intersection-animate p-6 rounded-2xl card-hover" style="background: var(--color-surface);">
+       <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background: linear-gradient(135deg, rgba(139, 115, 85, 0.1), rgba(196, 167, 125, 0.1));"><span class="text-2xl">🥈</span>
+       </div>
+       <h3 class="font-display text-lg font-semibold mb-2">Juara 2 Lomba Pidato FLS2N</h3>
+       <p class="text-sm mb-3" style="color: #666;">Tingkat SD</p><span class="text-xs px-3 py-1 rounded-full" style="background: rgba(139, 115, 85, 0.1); color: var(--color-primary);">Non-Akademik</span>
+      </div><!-- Achievement 2 -->
+      <div class="intersection-animate p-6 rounded-2xl card-hover" style="background: var(--color-surface); animation-delay: 0.1s;">
+       <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background: linear-gradient(135deg, rgba(139, 115, 85, 0.1), rgba(196, 167, 125, 0.1));"><span class="text-2xl">🥇</span>
+       </div>
+       <h3 class="font-display text-lg font-semibold mb-2">Juara 1 MGMP Bahasa Indonesia</h3>
+       <p class="text-sm mb-3" style="color: #666;">Baca Puisi Tingkat SMP</p><span class="text-xs px-3 py-1 rounded-full" style="background: rgba(139, 115, 85, 0.1); color: var(--color-primary);">Akademik</span>
+      </div><!-- Achievement 3 -->
+      <div class="intersection-animate p-6 rounded-2xl card-hover" style="background: var(--color-surface); animation-delay: 0.2s;">
+       <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background: linear-gradient(135deg, rgba(139, 115, 85, 0.1), rgba(196, 167, 125, 0.1));"><span class="text-2xl">🏆</span>
+       </div>
+       <h3 class="font-display text-lg font-semibold mb-2">Juara 1 FLS2N Baca Puisi</h3>
+       <p class="text-sm mb-3" style="color: #666;">Tingkat SMA Se-Kabupaten</p><span class="text-xs px-3 py-1 rounded-full" style="background: rgba(139, 115, 85, 0.1); color: var(--color-primary);">Non-Akademik</span>
+      </div><!-- Achievement 4 -->
+      <div class="intersection-animate p-6 rounded-2xl card-hover" style="background: var(--color-surface); animation-delay: 0.3s;">
+       <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background: linear-gradient(135deg, rgba(139, 115, 85, 0.1), rgba(196, 167, 125, 0.1));"><span class="text-2xl">✍️</span>
+       </div>
+       <h3 class="font-display text-lg font-semibold mb-2">Juara 1 FLS3N Cipta Puisi</h3>
+       <p class="text-sm mb-3" style="color: #666;">Tingkat SMA Se-Kabupaten</p><span class="text-xs px-3 py-1 rounded-full" style="background: rgba(139, 115, 85, 0.1); color: var(--color-primary);">Non-Akademik</span>
+      </div><!-- Achievement 5 -->
+      <div class="intersection-animate p-6 rounded-2xl card-hover" style="background: var(--color-surface); animation-delay: 0.4s;">
+       <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background: linear-gradient(135deg, rgba(139, 115, 85, 0.1), rgba(196, 167, 125, 0.1));"><span class="text-2xl">🎭</span>
+       </div>
+       <h3 class="font-display text-lg font-semibold mb-2">Juara 1 Performance Art</h3>
+       <p class="text-sm mb-3" style="color: #666;">Subang Innovation Festival</p><span class="text-xs px-3 py-1 rounded-full" style="background: rgba(139, 115, 85, 0.1); color: var(--color-primary);">Non-Akademik</span>
+      </div>
+     </div>
+    </div>
+   </section><!-- Organization Section -->
+   <section id="organization" class="py-20 lg:py-32" style="background: var(--color-surface);">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+     <div class="text-center mb-16 intersection-animate">
+      <p class="text-sm font-medium tracking-[0.3em] uppercase mb-4" style="color: var(--color-primary);">Where I Contribute</p>
+      <h2 class="section-title font-display text-4xl lg:text-5xl font-bold mx-auto">Organization</h2>
+     </div>
+     <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto"><!-- Org 1 -->
+      <div class="intersection-animate p-6 rounded-2xl card-hover border-l-4" style="background: var(--color-bg); border-color: var(--color-primary);">
+       <div class="flex items-start gap-4">
+        <div class="w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));"><span class="text-2xl text-white">🛠️</span>
+        </div>
+        <div>
+         <h3 class="font-display text-lg font-semibold mb-1">Bengkel Sastra</h3>
+         <p class="text-sm mb-2" style="color: var(--color-primary);">Anggota</p>
+         <p class="text-sm" style="color: #666;">Mengembangkan keterampilan menulis melalui workshop sastra intensif</p>
+        </div>
+       </div>
+      </div><!-- Org 2 -->
+      <div class="intersection-animate p-6 rounded-2xl card-hover border-l-4" style="background: var(--color-bg); border-color: var(--color-primary); animation-delay: 0.1s;">
+       <div class="flex items-start gap-4">
+        <div class="w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));"><span class="text-2xl text-white">📱</span>
+        </div>
+        <div>
+         <h3 class="font-display text-lg font-semibold mb-1">Sastraloka Poetika</h3>
+         <p class="text-sm mb-2" style="color: var(--color-primary);">Divisi Media Informasi</p>
+         <p class="text-sm" style="color: #666;">Mengelola konten dan media komunikasi komunitas sastra</p>
+        </div>
+       </div>
+      </div><!-- Org 3 -->
+      <div class="intersection-animate p-6 rounded-2xl card-hover border-l-4" style="background: var(--color-bg); border-color: var(--color-primary); animation-delay: 0.2s;">
+       <div class="flex items-start gap-4">
+        <div class="w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));"><span class="text-2xl text-white">✍️</span>
+        </div>
+        <div>
+         <h3 class="font-display text-lg font-semibold mb-1">Komunitas Penulis Fizzo Novel</h3>
+         <p class="text-sm mb-2" style="color: var(--color-primary);">Anggota Aktif</p>
+         <p class="text-sm" style="color: #666;">Berkolaborasi dalam penulisan novel dan karya panjang</p>
+        </div>
+       </div>
+      </div><!-- Org 4 -->
+      <div class="intersection-animate p-6 rounded-2xl card-hover border-l-4" style="background: var(--color-bg); border-color: var(--color-primary); animation-delay: 0.3s;">
+       <div class="flex items-start gap-4">
+        <div class="w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));"><span class="text-2xl text-white">📖</span>
+        </div>
+        <div>
+         <h3 class="font-display text-lg font-semibold mb-1">Komunitas Penulis Noveltoon</h3>
+         <p class="text-sm mb-2" style="color: var(--color-primary);">Anggota Aktif</p>
+         <p class="text-sm" style="color: #666;">Mengembangkan serial visual dan cerita interaktif</p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Experience Section -->
+   <section id="experience" class="py-20 lg:py-32 bg-pattern">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+     <div class="text-center mb-16 intersection-animate">
+      <p class="text-sm font-medium tracking-[0.3em] uppercase mb-4" style="color: var(--color-primary);">My Involvement</p>
+      <h2 class="section-title font-display text-4xl lg:text-5xl font-bold mx-auto">Experience</h2>
+      <p class="mt-8 text-base max-w-2xl mx-auto" style="color: #666;">Pengalaman kepanitiaan yang telah membentuk kemampuan organisasi dan kepemimpinan saya</p>
+     </div>
+     <div class="max-w-4xl mx-auto">
+      <div class="grid gap-4"><!-- Experience Items -->
+       <div class="intersection-animate p-5 rounded-xl flex items-center gap-4 card-hover" style="background: var(--color-surface);">
+        <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 text-white font-bold text-sm" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));">
+         01
+        </div>
+        <div class="flex-1">
+         <h3 class="font-medium">Panitia Lomba Sastra Antar Kelas</h3>
+         <p class="text-sm" style="color: #666;">Sekretaris - SMPN 1 Cijambe</p>
+        </div><span class="text-xs px-3 py-1 rounded-full hidden sm:inline-block" style="background: rgba(139, 115, 85, 0.1); color: var(--color-primary);">2021</span>
+       </div>
+       <div class="intersection-animate p-5 rounded-xl flex items-center gap-4 card-hover" style="background: var(--color-surface); animation-delay: 0.05s;">
+        <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 text-white font-bold text-sm" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));">
+         02
+        </div>
+        <div class="flex-1">
+         <h3 class="font-medium">Panitia Acara Isra Miraj</h3>
+         <p class="text-sm" style="color: #666;">MC</p>
+        </div><span class="text-xs px-3 py-1 rounded-full hidden sm:inline-block" style="background: rgba(139, 115, 85, 0.1); color: var(--color-primary);">2022</span>
+       </div>
+       <div class="intersection-animate p-5 rounded-xl flex items-center gap-4 card-hover" style="background: var(--color-surface); animation-delay: 0.1s;">
+        <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 text-white font-bold text-sm" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));">
+         03
+        </div>
+        <div class="flex-1">
+         <h3 class="font-medium">Panitia Lomba Agustus</h3>
+         <p class="text-sm" style="color: #666;">Sie Dokumentasi</p>
+        </div><span class="text-xs px-3 py-1 rounded-full hidden sm:inline-block" style="background: rgba(139, 115, 85, 0.1); color: var(--color-primary);">2023-2025</span>
+       </div>
+       <div class="intersection-animate p-5 rounded-xl flex items-center gap-4 card-hover" style="background: var(--color-surface); animation-delay: 0.15s;">
+        <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 text-white font-bold text-sm" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));">
+         04
+        </div>
+        <div class="flex-1">
+         <h3 class="font-medium">Panitia Lomba Bahasa Sastra</h3>
+         <p class="text-sm" style="color: #666;">PJ (Penanggung Jawab)</p>
+        </div><span class="text-xs px-3 py-1 rounded-full hidden sm:inline-block" style="background: rgba(139, 115, 85, 0.1); color: var(--color-primary);">2024</span>
+       </div>
+       <div class="intersection-animate p-5 rounded-xl flex items-center gap-4 card-hover" style="background: var(--color-surface); animation-delay: 0.2s;">
+        <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 text-white font-bold text-sm" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));">
+         05
+        </div>
+        <div class="flex-1">
+         <h3 class="font-medium">Team Kurator Pameran Seni Kayu</h3>
+         <p class="text-sm" style="color: #666;">Kurasi - SMAN 1 SUBANG</p>
+        </div><span class="text-xs px-3 py-1 rounded-full hidden sm:inline-block" style="background: rgba(139, 115, 85, 0.1); color: var(--color-primary);">2024</span>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Portfolio Section -->
+   <section id="portfolio" class="py-20 lg:py-32" style="background: var(--color-surface);">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+     <div class="text-center mb-16 intersection-animate">
+      <p class="text-sm font-medium tracking-[0.3em] uppercase mb-4" style="color: var(--color-primary);">Creative Works</p>
+      <h2 class="section-title font-display text-4xl lg:text-5xl font-bold mx-auto">My Portfolio</h2>
+      <p class="mt-8 text-base max-w-2xl mx-auto" style="color: #666;">Karya-karya sastra yang telah dipublikasikan dan menjadi bagian dari perjalanan kreatif saya</p>
+     </div><!-- Portfolio Items -->
+     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto"><!-- Portfolio Item 1 -->
+      <div class="intersection-animate rounded-2xl overflow-hidden card-hover" style="background: var(--color-bg);">
+       <div class="aspect-square flex items-center justify-center text-6xl" style="background: linear-gradient(135deg, rgba(139, 115, 85, 0.1), rgba(196, 167, 125, 0.1));">
+        📕
+       </div>
+       <div class="p-6">
+        <h3 class="font-display text-xl font-semibold mb-2">"Getir Kata yang Tak Sempat Terucap"</h3>
+        <p class="text-sm mb-4" style="color: #666;">Kumpulan Puisi Terbitan</p>
+        <p class="text-sm leading-relaxed mb-4" style="color: #555;">Sebuah koleksi puisi yang mengeksplorasi tema kehidupan, perjalanan pribadi, dan makna sastra. Setiap puisi adalah cerminan dari pemahaman mendalam tentang emosi dan pengalaman hidup.</p>
+        <div class="flex flex-wrap gap-2"><span class="text-xs px-3 py-1 rounded-full" style="background: rgba(139, 115, 85, 0.1); color: var(--color-primary);">Puisi</span> <span class="text-xs px-3 py-1 rounded-full" style="background: rgba(139, 115, 85, 0.1); color: var(--color-primary);">Publikasi</span> <span class="text-xs px-3 py-1 rounded-full" style="background: rgba(139, 115, 85, 0.1); color: var(--color-primary);">Sastra</span>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section>
+   <section id="contact" class="py-20 lg:py-32" style="background: var(--color-surface);">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+     <div class="grid lg:grid-cols-2 gap-16"><!-- Left - Info -->
+      <div class="intersection-animate">
+       <p class="text-sm font-medium tracking-[0.3em] uppercase mb-4" style="color: var(--color-primary);">Get In Touch</p>
+       <h2 class="section-title font-display text-4xl lg:text-5xl font-bold mb-8">Contact Me</h2>
+       <p class="text-base leading-relaxed mb-12" style="color: #666;">Tertarik untuk berkolaborasi atau ingin berdiskusi tentang sastra? Jangan ragu untuk menghubungi saya!</p>
+       <div class="space-y-6"><!-- Email -->
+        <div class="flex items-center gap-4">
+         <div class="w-14 h-14 rounded-xl flex items-center justify-center" style="background: linear-gradient(135deg, rgba(139, 115, 85, 0.1), rgba(196, 167, 125, 0.1));">
+          <svg class="w-6 h-6" style="color: var(--color-primary);" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+         </div>
+         <div>
+          <p class="text-sm font-medium" style="color: #666;">Email</p>
+          <p id="contact-email" class="font-medium">zahwasyifa160@gmail.com</p>
+         </div>
+        </div><!-- WhatsApp -->
+        <div class="flex items-center gap-4">
+         <div class="w-14 h-14 rounded-xl flex items-center justify-center" style="background: linear-gradient(135deg, rgba(139, 115, 85, 0.1), rgba(196, 167, 125, 0.1));">
+          <svg class="w-6 h-6" style="color: var(--color-primary);" fill="currentColor" viewbox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+          </svg>
+         </div>
+         <div>
+          <p class="text-sm font-medium" style="color: #666;">WhatsApp</p>
+          <p class="font-medium">085935296970</p>
+         </div>
+        </div><!-- Instagram -->
+        <div class="flex items-center gap-4">
+         <div class="w-14 h-14 rounded-xl flex items-center justify-center" style="background: linear-gradient(135deg, rgba(139, 115, 85, 0.1), rgba(196, 167, 125, 0.1));">
+          <svg class="w-6 h-6" style="color: var(--color-primary);" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+          </svg>
+         </div>
+         <div>
+          <p class="text-sm font-medium" style="color: #666;">Instagram</p>
+          <p class="font-medium">@dd_xyva</p>
+         </div>
+        </div>
+       </div>
+      </div><!-- Right - Form -->
+      <div class="intersection-animate" style="animation-delay: 0.2s;">
+       <form id="contact-form" class="p-8 rounded-3xl" style="background: var(--color-bg);">
+        <h3 class="font-display text-2xl font-semibold mb-6">Kirim Pesan</h3>
+        <div class="space-y-5">
+         <div><label for="name" class="block text-sm font-medium mb-2">Nama</label> <input type="text" id="name" name="name" required class="w-full px-5 py-4 rounded-xl border-2 transition-all focus:outline-none" style="background: var(--color-surface); border-color: transparent;" onfocus="this.style.borderColor='var(--color-primary)'" onblur="this.style.borderColor='transparent'" placeholder="Nama lengkap Anda">
+         </div>
+         <div><label for="email" class="block text-sm font-medium mb-2">Email</label> <input type="email" id="email" name="email" required class="w-full px-5 py-4 rounded-xl border-2 transition-all focus:outline-none" style="background: var(--color-surface); border-color: transparent;" onfocus="this.style.borderColor='var(--color-primary)'" onblur="this.style.borderColor='transparent'" placeholder="email@example.com">
+         </div>
+         <div><label for="message" class="block text-sm font-medium mb-2">Pesan</label> <textarea id="message" name="message" rows="5" required class="w-full px-5 py-4 rounded-xl border-2 transition-all focus:outline-none resize-none" style="background: var(--color-surface); border-color: transparent;" onfocus="this.style.borderColor='var(--color-primary)'" onblur="this.style.borderColor='transparent'" placeholder="Tulis pesan Anda di sini..."></textarea>
+         </div><button type="submit" class="btn-primary w-full px-8 py-4 rounded-xl text-white font-medium text-sm tracking-wide"> Kirim Pesan </button>
+        </div><!-- Success Message -->
+        <div id="success-message" class="hidden mt-6 p-4 rounded-xl text-center" style="background: rgba(34, 197, 94, 0.1); color: #16a34a;">
+         <p class="font-medium">✓ Pesan berhasil dikirim!</p>
+        </div>
+       </form>
+      </div>
+     </div>
+    </div>
+   </section><!-- Footer -->
+   <footer class="py-12" style="background: var(--color-text); color: white;">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+     <div class="flex flex-col items-center text-center"><!-- Logo --> <a href="#home" class="font-display text-3xl font-bold mb-4" style="color: var(--color-secondary);"> Zahwa<span class="text-white">.</span> </a> <!-- Quote -->
+      <p class="text-base mb-8 max-w-md opacity-80 italic font-display">"Menulis adalah cara terbaik untuk berbicara tanpa diganggu."</p><!-- Social Media -->
+      <div class="flex gap-4 mb-8"><a href="#" class="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110" style="background: rgba(255,255,255,0.1);">
+        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+        </svg></a> <a href="#" class="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110" style="background: rgba(255,255,255,0.1);">
+        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+        </svg></a> <a href="#" class="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110" style="background: rgba(255,255,255,0.1);">
+        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+        </svg></a>
+      </div><!-- Copyright -->
+      <div class="pt-8 border-t w-full" style="border-color: rgba(255,255,255,0.1);">
+       <p class="text-sm opacity-60">© Zahwa Syifa – 2026. All rights reserved.</p>
+      </div>
+     </div>
+    </div>
+   </footer>
+  </div>
+  <script>
+    // Default configuration
+    const defaultConfig = {
+      hero_title: "I'm Zahwa Syifa",
+      hero_subtitle: "12th Grade of Senior High School",
+      about_title: "About Me",
+      contact_email: "zahwasyifa@email.com",
+      background_color: "#FDFBF7",
+      surface_color: "#FFFFFF",
+      text_color: "#1A1A1A",
+      primary_color: "#8B7355",
+      secondary_color: "#C4A77D"
+    };
+
+    // Initialize Element SDK
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange: async (config) => {
+          // Update hero title
+          const heroTitle = document.getElementById('hero-title');
+          if (heroTitle) {
+            heroTitle.innerHTML = (config.hero_title || defaultConfig.hero_title).replace(
+              'Zahwa Syifa',
+              '<span class="text-gradient">Zahwa Syifa</span>'
+            );
+          }
+
+          // Update hero subtitle
+          const heroSubtitle = document.getElementById('hero-subtitle');
+          if (heroSubtitle) {
+            heroSubtitle.textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
+          }
+
+          // Update about title
+          const aboutTitle = document.getElementById('about-title');
+          if (aboutTitle) {
+            aboutTitle.textContent = config.about_title || defaultConfig.about_title;
+          }
+
+          // Update contact email
+          const contactEmail = document.getElementById('contact-email');
+          if (contactEmail) {
+            contactEmail.textContent = config.contact_email || defaultConfig.contact_email;
+          }
+
+          // Update colors
+          document.documentElement.style.setProperty('--color-bg', config.background_color || defaultConfig.background_color);
+          document.documentElement.style.setProperty('--color-surface', config.surface_color || defaultConfig.surface_color);
+          document.documentElement.style.setProperty('--color-text', config.text_color || defaultConfig.text_color);
+          document.documentElement.style.setProperty('--color-primary', config.primary_color || defaultConfig.primary_color);
+          document.documentElement.style.setProperty('--color-secondary', config.secondary_color || defaultConfig.secondary_color);
+        },
+        mapToCapabilities: (config) => ({
+          recolorables: [
+            {
+              get: () => config.background_color || defaultConfig.background_color,
+              set: (value) => {
+                config.background_color = value;
+                window.elementSdk.setConfig({ background_color: value });
+              }
+            },
+            {
+              get: () => config.surface_color || defaultConfig.surface_color,
+              set: (value) => {
+                config.surface_color = value;
+                window.elementSdk.setConfig({ surface_color: value });
+              }
+            },
+            {
+              get: () => config.text_color || defaultConfig.text_color,
+              set: (value) => {
+                config.text_color = value;
+                window.elementSdk.setConfig({ text_color: value });
+              }
+            },
+            {
+              get: () => config.primary_color || defaultConfig.primary_color,
+              set: (value) => {
+                config.primary_color = value;
+                window.elementSdk.setConfig({ primary_color: value });
+              }
+            },
+            {
+              get: () => config.secondary_color || defaultConfig.secondary_color,
+              set: (value) => {
+                config.secondary_color = value;
+                window.elementSdk.setConfig({ secondary_color: value });
+              }
+            }
+          ],
+          borderables: [],
+          fontEditable: undefined,
+          fontSizeable: undefined
+        }),
+        mapToEditPanelValues: (config) => new Map([
+          ["hero_title", config.hero_title || defaultConfig.hero_title],
+          ["hero_subtitle", config.hero_subtitle || defaultConfig.hero_subtitle],
+          ["about_title", config.about_title || defaultConfig.about_title],
+          ["contact_email", config.contact_email || defaultConfig.contact_email]
+        ])
+      });
+    }
+
+    // Mobile Menu Toggle
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('active');
+    });
+
+    function closeMobileMenu() {
+      hamburger.classList.remove('active');
+      mobileMenu.classList.remove('active');
+    }
+
+    // Header scroll effect
+    const header = document.getElementById('header');
+    let lastScroll = 0;
+
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.scrollY;
+      
+      if (currentScroll > 100) {
+        header.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.08)';
+      } else {
+        header.style.boxShadow = 'none';
+      }
+      
+      lastScroll = currentScroll;
+    });
+
+    // Active navigation link
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (scrollY >= sectionTop - 200) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').slice(1) === current) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // Intersection Observer for animations
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.intersection-animate').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Contact form submission
+    const contactForm = document.getElementById('contact-form');
+    const successMessage = document.getElementById('success-message');
+
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      // Show success message
+      successMessage.classList.remove('hidden');
+      
+      // Reset form
+      contactForm.reset();
+      
+      // Hide success message after 3 seconds
+      setTimeout(() => {
+        successMessage.classList.add('hidden');
+      }, 3000);
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c986120816a8247',t:'MTc3MDM1NzEyNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html
